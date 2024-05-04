@@ -21,13 +21,27 @@ public class Main {
     }
 
     EmailMessenger emailMessenger = new EmailMessenger();
-    Integer i = MathUtils.add(4, 6);
-    System.out.println(i);
-    
-    emailMessenger.sendMessage("Suma dwóch liczb to " + i.toString());
 
+    Integer g = MathUtils.add(4, 6);
+    System.out.println(g);
 
+    emailMessenger.sendMessage("Suma dwóch liczb to: " + g.toString());
 
-    
+    Person[] people = new Person[5];
+
+    final Integer b = 10;
+
+    for (int i = 0; i < 5; i++) {
+      try {
+        people[i] = new Person("Losowy numer osoby: " + Integer.toString(i), 12 * (i + 1));
+      } catch (InvalidAgeException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+
+    for (Person person : people) {
+      emailMessenger.sendMessage(person.getName() + " obliczona liczba to " + person.getAge() * b);
+    }
+
   }
 }
